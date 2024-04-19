@@ -13,17 +13,20 @@ import javax.imageio.ImageIO;
  */
 public class Game_Screen2 implements Screen {
     BufferedImage bg, bg2, bufferedImage2;
-    public ArrayList<Gold> listGold = new ArrayList<>();
+    ArrayList<Gold> listGold = new ArrayList<>();
+    
     Player player;
-    Gold g1,g2,g3,g4;
+    Gold g1,g2,g3,g4,g5,g6;
     
     public Game_Screen2() {
         player = new Player(300, 24);
         try{
-        g1 = new Gold(25,195,"Resources/vang_1.png",100,1);
-        g2 = new Gold(52,300,"Resources/vang_2.png",200,2);
-        g3 = new Gold(13,86,"Resources/vang_3.png",300,3);
-        g4 = new Gold(300,164,"Resources/vang_4.png",400,4);
+        g4 = new Gold(385,495,"Resources/vang_1.png",100,1);
+        g3 = new Gold(145,410,"Resources/vang_2.png",200,2);
+        g2 = new Gold(58,150,"Resources/vang_3.png",300,3);
+        g1 = new Gold(700,364,"Resources/vang_4.png",400,4);
+        g5 = new Gold(450,445,"Resources/vang_3.png",100,1);
+        g6 = new Gold(600,500,"Resources/vang_2.png",200,2);
         }catch(Exception e ){
             e.printStackTrace();
         }
@@ -31,6 +34,8 @@ public class Game_Screen2 implements Screen {
         listGold.add(g2);
         listGold.add(g3);
         listGold.add(g4);
+        listGold.add(g5);
+        listGold.add(g6);
         try {
             bg = ImageIO.read(new File("Resources/bg.png"));
             bg2 = ImageIO.read(new File("Resources/bg2.png"));          
@@ -72,7 +77,5 @@ public class Game_Screen2 implements Screen {
         }
         g2d.drawImage(bufferedImage2, 0, 0, null);
     }
-    public ArrayList getArray() {
-        return listGold;
-    }
+    
 }

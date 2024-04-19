@@ -21,11 +21,11 @@ public class Game_Screen implements Screen {
         player = new Player(300, 24);
         try{
         g4 = new Gold(152,405,"Resources/vang_1.png",400,1);
-        g3 = new Gold(452,221,"Resources/vang_2.png",300,2);
+        g3 = new Gold(452,321,"Resources/vang_2.png",300,2);
         g2 = new Gold(241,286,"Resources/vang_3.png",100,3);
-        g1 = new Gold(300,80,"Resources/vang_4.png",50,4);
-        g5 = new Gold(400,100,"Resources/vang_4.png",50,4);
-        g6 = new Gold(100,100,"Resources/vang_4.png",50,4);
+        g1 = new Gold(300,150,"Resources/vang_4.png",50,4);
+        g5 = new Gold(400,200,"Resources/vang_4.png",50,4);
+        g6 = new Gold(100,200,"Resources/vang_4.png",50,4);
         }catch(Exception e ){
             e.printStackTrace();
         }

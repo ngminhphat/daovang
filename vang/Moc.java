@@ -28,7 +28,8 @@ public class Moc  {
     int y;
     
     
-
+    
+    
     public Moc(int positionX, int positionY) {
         
         this.positionX = positionX;
@@ -49,13 +50,57 @@ public class Moc  {
         g.drawImage(image, 320, this.positionY, null);
     }
     public void an_vang(ArrayList<Gold> listGold){
+        Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
         Rectangle vang = new Rectangle();
         for(Gold gold : listGold) {
-            
+            vang = new Rectangle(gold.get_x(),gold.get_y(),gold.image.getWidth(),gold.image.getHeight());
+            if(moc.intersects(vang)){
+                if(gold.weight==1){
+                    try {
+                        this.image= ImageIO.read(new File("Resources/gapvang_1.png"));
+                    }catch(Exception e) {
+                         e.printStackTrace();
+                    }
+                    keoVe=true;
+                    speedY=-1;
+                }else if(gold.weight ==3){
+                    try {
+                        this.image= ImageIO.read(new File("Resources/gapvang_3.png"));
+                    }catch(Exception e) {
+                         e.printStackTrace();
+                    }
+                    keoVe=true;
+                    speedY=-2;
+                }else if(gold.weight ==4 ){
+                    try {
+                        this.image= ImageIO.read(new File("Resources/gapvang_4.png"));
+                    }catch(Exception e) {
+                         e.printStackTrace();
+                    }
+                    keoVe=true;
+                    
+                    speedY=-3;
+                }
+                gold.biKeo=true;
+                
+                }
+    }
+    }
+    public void anTnt(Tnt tnt) {
+        Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
+        Rectangle tnt1= new Rectangle(tnt.get_x(),tnt.get_y(),tnt.image.getWidth(),tnt.image.getHeight());
+        if(moc.intersects(tnt1)){
+            try{
+                image = ImageIO.read(new File("Resources/gaptnt.png"));
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            keoVe = true;
+            tnt.biKeo=true;
+            speedY=-1;
         }
     }
     
-
     public void update(){
         this.positionY += speedY;
         double d1 = Math.cos(Math.toRadians(anpha));
@@ -78,6 +123,7 @@ public class Moc  {
             speedY = -3;
             this.speedX = (int) (this.speedY*d);
         }
+        //móc sẽ quay quanh 
         if(this.positionX == 350 && this.positionY == 134){
             if(anpha == 60){
                 anphaPlus = -1;

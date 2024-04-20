@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  */
 public class Gold extends Object {
     int score;
-    
+    boolean biKeo = false;
     BufferedImage image;
     int weight;
     public Gold(int posX,int posY,String loaiGold,int scoren,int weight) {

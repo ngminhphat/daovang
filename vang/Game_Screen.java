@@ -60,17 +60,13 @@ public class Game_Screen implements Screen {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//        try {
-//            
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 	}
 
 	@Override
 	public void click() {
-		Game_Manager.getInstance().getStackScreen().pop();
-		Game_Manager.getInstance().getStackScreen().push(new Game_Screen2());
+		
+		Game_Manager.getInstance().getStackScreen().push(new Screen_nextlevel());
 	}
 
 	@Override
@@ -112,7 +108,11 @@ public class Game_Screen implements Screen {
             Iterator itr7 = listTnt.iterator();
             while (itr7.hasNext()) {
                 Tnt s = (Tnt) itr7.next();
-                if (s.biKeo) itr7.remove();
+                if (s.biKeo) {
+                    itr7.remove();
+                    s.draw1(bufferedImage2,350,24);
+                }
+
             }
 
 		}

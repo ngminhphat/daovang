@@ -63,7 +63,7 @@ public class Listener extends Frame {
 //                if(e.getX() >= 300 && e.getX() <= 600 && e.getY() >= 400 && e.getY() <= 500){
 //                    ((GameOver)GameManager.getInstance().getStackScreen().peek()).resetGame();
 //                }
-            
+                
             }
 
             @Override
@@ -98,12 +98,23 @@ public class Listener extends Frame {
                     case KeyEvent.VK_SPACE:
                         if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen  )
                         ((Game_Screen) (Game_Manager.getInstance().getStackScreen().peek())).gapDo();
-                        else{
+                        else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen2 ){
                             ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).gapDo();
                         }
                         break;                   
                     case KeyEvent.VK_ENTER:
+                        if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen  )
                         ((Game_Screen) (Game_Manager.getInstance().getStackScreen().peek())).click();
+                        else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Screen_nextlevel ){
+                            ((Screen_nextlevel) (Game_Manager.getInstance().getStackScreen().peek())).click();
+                        }
+                        break;
+                    case KeyEvent.VK_UP:
+                        if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen  )
+                        ((Game_Screen) (Game_Manager.getInstance().getStackScreen().peek())).huyDovat();
+                        else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen2 ){
+                            ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).huyDovat();
+                        }
                         break;
                 }
             }

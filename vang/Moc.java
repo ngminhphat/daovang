@@ -55,41 +55,42 @@ public class Moc  {
         for(Gold gold : listGold) {
             vang = new Rectangle(gold.get_x(),gold.get_y(),gold.image.getWidth(),gold.image.getHeight());
             if(moc.intersects(vang)){
-                if(gold.weight==1){
-                    try {
+                try {
+                    if(gold.weight==1){
+                    
                         this.image= ImageIO.read(new File("Resources/gapvang_1.png"));
-                    }catch(Exception e) {
-                         e.printStackTrace();
-                    }
-                    keoVe=true;
+                    
+                    
                     speedY=-1;
                 }else if(gold.weight ==3){
-                    try {
+                    
                         this.image= ImageIO.read(new File("Resources/gapvang_3.png"));
-                    }catch(Exception e) {
-                         e.printStackTrace();
-                    }
-                    keoVe=true;
+                    
+                    
                     speedY=-2;
                 }else if(gold.weight ==4 ){
-                    try {
+                    
                         this.image= ImageIO.read(new File("Resources/gapvang_4.png"));
-                    }catch(Exception e) {
-                         e.printStackTrace();
+                    
                     }
-                    keoVe=true;
+                    
                     
                     speedY=-3;
+                } catch(Exception e) {
+                    e.printStackTrace();
                 }
+                keoVe=true;
                 gold.biKeo=true;
-                
+                break;
                 }
     }
     }
-    public void anTnt(Tnt tnt) {
+    public void anTnt(ArrayList<Tnt> listTnt) {
         Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
-        Rectangle tnt1= new Rectangle(tnt.get_x(),tnt.get_y(),tnt.image.getWidth(),tnt.image.getHeight());
-        if(moc.intersects(tnt1)){
+        Rectangle bom;
+        for(Tnt tnt :listTnt){
+            bom = new Rectangle(tnt.get_x(),tnt.get_y(),tnt.image.getWidth(),tnt.image.getHeight());
+        if(moc.intersects(bom)){
             try{
                 image = ImageIO.read(new File("Resources/gaptnt.png"));
             }catch(Exception e) {
@@ -99,8 +100,47 @@ public class Moc  {
             tnt.biKeo=true;
             speedY=-1;
         }
+        }
+        
     }
-    
+    public void anDa(ArrayList<Da> listDa) {
+        Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
+        Rectangle stone;
+        for(Da da : listDa){
+            stone = new Rectangle(da.get_x(),da.get_y(),da.image.getWidth(),da.image.getHeight());
+        if(moc.intersects(stone)){
+            try{
+                if(da.weight==1){
+                image = ImageIO.read(new File("Resources/gapda_1.png"));
+                }else if(da.weight==2){
+                    image = ImageIO.read(new File("Resources/gapda_2.png"));
+                }
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            keoVe = true;
+            da.biKeo=true;
+            speedY=-1;
+        }
+        }
+    }
+    public void anPig(ArrayList<Pig> listPig) {
+        Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
+        Rectangle lon;
+        for(Pig pig :listPig){
+            lon = new Rectangle(pig.get_x(),pig.get_y(),pig.image.getWidth(),pig.image.getHeight());
+        if(moc.intersects(lon)){
+            try{
+                image = ImageIO.read(new File("Resources/gappig.png"));
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            keoVe = true;
+            pig.biKeo=true;
+            speedY=-1;
+        }
+        }
+    }
     public void update(){
         this.positionY += speedY;
         double d1 = Math.cos(Math.toRadians(anpha));

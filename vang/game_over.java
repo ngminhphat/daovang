@@ -12,7 +12,7 @@ public class game_over implements Screen {
     public game_over(){
         try {
             reset = ImageIO.read(new File("Resources/button_reset.png"));
-            gameover = ImageIO.read(new File("Resources/game_over.png"));
+            gameover = ImageIO.read(new File("Resources/gameover.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

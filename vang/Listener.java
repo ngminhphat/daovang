@@ -60,9 +60,9 @@ public class Listener extends Frame {
                 if((e.getX() >= 50 && e.getX() <= 367) && (e.getY() >= 50 && e.getY() <= 337)){
                     ((Start_Screen)Game_Manager.getInstance().getStackScreen().peek()).startGame();
                 }
-//                if(e.getX() >= 300 && e.getX() <= 600 && e.getY() >= 400 && e.getY() <= 500){
-//                    ((GameOver)GameManager.getInstance().getStackScreen().peek()).resetGame();
-//                }
+                if(e.getX() >= 300 && e.getX() <= 600 && e.getY() >= 400 && e.getY() <= 500){
+                    ((game_over)Game_Manager.getInstance().getStackScreen().peek()).resetGame();
+                }
                 
             }
 
@@ -95,7 +95,7 @@ public class Listener extends Frame {
             @Override   
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_SPACE:
+                    case KeyEvent.VK_DOWN:
                         if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen  )
                         ((Game_Screen) (Game_Manager.getInstance().getStackScreen().peek())).gapDo();
                         else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen2 ){
@@ -103,9 +103,8 @@ public class Listener extends Frame {
                         }
                         break;                   
                     case KeyEvent.VK_ENTER:
-                        if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen  )
-                        ((Game_Screen) (Game_Manager.getInstance().getStackScreen().peek())).click();
-                        else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Screen_nextlevel ){
+                        
+                         if(Game_Manager.getInstance().getStackScreen().peek() instanceof Screen_nextlevel ){
                             ((Screen_nextlevel) (Game_Manager.getInstance().getStackScreen().peek())).click();
                         }
                         break;
@@ -115,6 +114,12 @@ public class Listener extends Frame {
                         else if(Game_Manager.getInstance().getStackScreen().peek() instanceof Game_Screen2 ){
                             ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).huyDovat();
                         }
+                        break;
+                    case KeyEvent.VK_3:
+                        ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).set_time();
+                        break;
+                    case  KeyEvent.VK_2:
+                        ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).player.moc.set_chisoDiem();
                         break;
                 }
             }

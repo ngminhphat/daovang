@@ -26,9 +26,7 @@ public class Start_Screen implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
     @Override
     public void click() {
         Game_Manager.getInstance().getStackScreen().push(new Game_Screen());

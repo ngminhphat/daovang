@@ -15,9 +15,11 @@ import javax.imageio.ImageIO;
  */
 public class Screen_nextlevel implements Screen{
     BufferedImage image;
+    private int chiso =1;
+    private int time = 30;
     public Screen_nextlevel(){
         try {
-            image = ImageIO.read(new File("Resources/gameover.png"));
+            image = ImageIO.read(new File("Resources/nextman.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -26,9 +28,14 @@ public class Screen_nextlevel implements Screen{
     @Override
     public void click() {
         
-	Game_Manager.getInstance().getStackScreen().push(new Game_Screen2());
+	Game_Manager.getInstance().getStackScreen().push(new Game_Screen2(chiso,time));
     }
-
+    public void set_chiso(){
+        chiso = 2;
+    }
+    public void set_time() {
+        time = 60;
+    }
     @Override
     public void update() {
     }

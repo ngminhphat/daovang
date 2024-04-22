@@ -36,8 +36,5 @@ public class Tnt extends Object {
         Graphics g = bufferedImage.getGraphics();
         g.drawImage(image, this.get_x(), this.get_y(), null);
     }
-    public void draw1(Image bufferedImage,int x,int y) {
-        Graphics g = bufferedImage.getGraphics();
-        g.drawImage(image, x, y, null);
-    }
+    
 }

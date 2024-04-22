@@ -19,7 +19,7 @@ public class Gold extends Object {
     boolean biKeo = false;
     BufferedImage image;
     int weight;
-    public Gold(int posX,int posY,String loaiGold,int scoren,int weight) {
+    public Gold(int posX,int posY,String loaiGold,int score,int weight) {
         super(posX,posY);
         this.score =score;
         this.weight= weight;

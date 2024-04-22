@@ -93,9 +93,9 @@ public class Game_Screen implements Screen {
 		
             Game_Manager.getInstance().getStackScreen().push(new game_over());
 	}
-       public void next_man() {
-           Game_Manager.getInstance().getStackScreen().push(new Screen_nextlevel());
-       }
+        public void next_man() {
+            Game_Manager.getInstance().getStackScreen().push(new Screen_nextlevel());
+        }
 	@Override
 	public void update() {
 		
@@ -115,9 +115,9 @@ public class Game_Screen implements Screen {
                 }
                 count2++;
                 tempScore = player.moc.tongDiem;
-               if( dem ==0 && (tempScore >=targetScore )) {
-                   this.next_man();
-               }
+                if( dem ==0 && (tempScore >=targetScore )) {
+                    this.next_man();
+                }
                 if( dem==0 &&(tempScore <targetScore )) {
                     this.click();
                 }

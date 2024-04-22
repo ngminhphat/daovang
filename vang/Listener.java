@@ -116,10 +116,11 @@ public class Listener extends Frame {
                         }
                         break;
                     case KeyEvent.VK_3:
-                        ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).set_time();
+                        ((Screen_nextlevel) (Game_Manager.getInstance().getStackScreen().peek())).set_time();
+             
                         break;
                     case  KeyEvent.VK_2:
-                        ((Game_Screen2) (Game_Manager.getInstance().getStackScreen().peek())).player.moc.set_chisoDiem();
+                        ((Screen_nextlevel) (Game_Manager.getInstance().getStackScreen().peek())).set_chiso();
                         break;
                 }
             }

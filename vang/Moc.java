@@ -26,7 +26,7 @@ public class Moc  {
     boolean keoVe = false;
     static int anpha = 0, anphaPlus = 1;
     int y;
-    
+    int chiso_Diem=1;
     
     
     
@@ -42,7 +42,9 @@ public class Moc  {
             e.printStackTrace();
         }
     }
-
+    public void set_chisoDiem() {
+        chiso_Diem=2;
+    }
     public void draw(BufferedImage bufferedImage){
         Graphics2D g = (Graphics2D) bufferedImage.getGraphics();
         g.rotate(Math.toRadians(anpha), 385, 134);
@@ -81,8 +83,11 @@ public class Moc  {
                 }
                 keoVe=true;
                 gold.biKeo=true;
+                tongDiem+=chiso_Diem*gold.score;
                 break;
+                
                 }
+            
     }
     }
     public void anTnt(ArrayList<Tnt> listTnt) {
@@ -91,14 +96,14 @@ public class Moc  {
         for(Tnt tnt :listTnt){
             bom = new Rectangle(tnt.get_x(),tnt.get_y(),tnt.image.getWidth(),tnt.image.getHeight());
         if(moc.intersects(bom)){
+            keoVe = true;
+            tnt.biKeo=true;
+            speedY=-1;
             try{
                 image = ImageIO.read(new File("Resources/gaptnt.png"));
             }catch(Exception e) {
                 e.printStackTrace();
-            }
-            keoVe = true;
-            tnt.biKeo=true;
-            speedY=-1;
+            }   
         }
         }
         
@@ -110,34 +115,54 @@ public class Moc  {
             stone = new Rectangle(da.get_x(),da.get_y(),da.image.getWidth(),da.image.getHeight());
         if(moc.intersects(stone)){
             try{
-                if(da.weight==1){
+                
                 image = ImageIO.read(new File("Resources/gapda_1.png"));
-                }else if(da.weight==2){
-                    image = ImageIO.read(new File("Resources/gapda_2.png"));
-                }
+                
             }catch(Exception e) {
                 e.printStackTrace();
             }
             keoVe = true;
             da.biKeo=true;
             speedY=-1;
+            tongDiem+=chiso_Diem*da.score;
         }
         }
     }
     public void anPig(ArrayList<Pig> listPig) {
         Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
         Rectangle lon;
-        for(Pig pig :listPig){
+        for(Pig pig : listPig){
             lon = new Rectangle(pig.get_x(),pig.get_y(),pig.image.getWidth(),pig.image.getHeight());
         if(moc.intersects(lon)){
             try{
+                
                 image = ImageIO.read(new File("Resources/gappig.png"));
+                
             }catch(Exception e) {
                 e.printStackTrace();
             }
             keoVe = true;
             pig.biKeo=true;
             speedY=-1;
+            tongDiem+=chiso_Diem*pig.score;
+        }
+        }
+    }
+    public void anKc(ArrayList<kim_cuong> listKc) {
+        Rectangle moc = new Rectangle(this.positionX,y,this.image.getWidth(),this.image.getHeight());
+        Rectangle kimcuong;
+        for(kim_cuong kc :listKc){
+            kimcuong = new Rectangle(kc.get_x(),kc.get_y(),kc.image.getWidth(),kc.image.getHeight());
+        if(moc.intersects(kimcuong)){
+            try{
+                image = ImageIO.read(new File("Resources/gapkc.png"));
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            keoVe = true;
+            kc.biKeo=true;
+            speedY=-2;
+            tongDiem+=chiso_Diem*kc.score;
         }
         }
     }

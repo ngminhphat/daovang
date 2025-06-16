@@ -11,34 +11,28 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 /**
- *
  * @author Administrator
  */
-public class kim_cuong extends Object{
-            int score;
-            public boolean biKeo = false;
-            BufferedImage image;
+public class kim_cuong extends BaseObject {
+    int score;
+    BufferedImage image;
 
-            public kim_cuong(int posX, int posY, String img, int score) {
-                    super(posX, posY);
-                    this.score = score;
-                    
-                    try {
-                            image = ImageIO.read(new File(img));
-                    } catch (Exception e) {
-                            e.printStackTrace();
-                    }
-            }
+    public kim_cuong(int posX, int posY, String img, int score) {
+        super(posX, posY);
+        this.score = score;
+
+        try {
+            image = ImageIO.read(new File(img));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void draw(Image bufferedImage) {
-         Graphics g = bufferedImage.getGraphics();
+        Graphics g = bufferedImage.getGraphics();
         g.drawImage(this.image, this.get_x(), this.get_y(), null);
     }
 
-            
 
-    
-
-    
 }

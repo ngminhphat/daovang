@@ -11,21 +11,20 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 /**
- *
  * @author Administrator
  */
-public class Gold extends Object {
+public class Gold extends BaseObject {
     int score;
-    public boolean biKeo = false;
     BufferedImage image;
     int weight;
-    public Gold(int posX,int posY,String loaiGold,int score,int weight) {
-        super(posX,posY);
-        this.score =score;
-        this.weight= weight;
+
+    public Gold(int posX, int posY, String loaiGold, int score, int weight) {
+        super(posX, posY);
+        this.score = score;
+        this.weight = weight;
         try {
             image = ImageIO.read(new File(loaiGold));
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -35,5 +34,5 @@ public class Gold extends Object {
         Graphics g = bufferedImage.getGraphics();
         g.drawImage(image, this.get_x(), this.get_y(), null);
     }
-    
+
 }

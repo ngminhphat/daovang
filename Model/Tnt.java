@@ -11,20 +11,19 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 /**
- *
  * @author Administrator
  */
-public class Tnt extends Object {
+public class Tnt extends BaseObject {
     BufferedImage image;
     int weight;
-    public boolean biKeo = false;
-    public static int count=0;
-    public Tnt(int posX,int posY) {
-        super(posX,posY);        
-        this.weight= weight;
+    public static int count = 0;
+
+    public Tnt(int posX, int posY) {
+        super(posX, posY);
+        this.weight = weight;
         try {
             image = ImageIO.read(new File("Resources/tnt1.png"));
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         count++;
@@ -35,5 +34,5 @@ public class Tnt extends Object {
         Graphics g = bufferedImage.getGraphics();
         g.drawImage(image, this.get_x(), this.get_y(), null);
     }
-    
+
 }

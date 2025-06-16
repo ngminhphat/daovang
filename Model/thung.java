@@ -11,23 +11,20 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 /**
- *
  * @author Administrator
  */
-public class thung extends Object{
+public class thung extends BaseObject {
     BufferedImage image;
-    
-    public boolean biKeo = false;
-    
-    public thung(int posX,int posY) {
-        super(posX,posY);        
-        
+
+    public thung(int posX, int posY) {
+        super(posX, posY);
+
         try {
             image = ImageIO.read(new File("Resources/thung.png"));
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
     @Override

@@ -77,7 +77,7 @@ public class Game_Screen2 implements Screen {
 	}
 
 	public void next_man() {
-		Game_Manager.getInstance().getStackScreen().push(new Screen_win());
+		Game_Manager.getInstance().getStackScreen().push(new Controller.Screen_nextlevel());
 	}
 
 	@Override

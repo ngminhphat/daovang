@@ -12,11 +12,15 @@ import Controller.Screen;
 import java.util.Stack;
 
 public class Game_Manager {
+    private static Game_Manager instance;
     private Stack<Screen> stackScreen;
-    private static Game_Manager ourInstance = new Game_Manager();
+    private static int currentLevel = 1;
 
     public static Game_Manager getInstance() {
-        return ourInstance;
+        if (instance == null) {
+            instance = new Game_Manager();
+        }
+        return instance;
     }
 
     private Game_Manager() {
@@ -25,5 +29,13 @@ public class Game_Manager {
 
     public Stack<Screen> getStackScreen() {
         return stackScreen;
+    }
+
+    public static int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public static void setCurrentLevel(int level) {
+        currentLevel = level;
     }
 }

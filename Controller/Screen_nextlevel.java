@@ -1,6 +1,8 @@
 package Controller;
 
 import View.Game_Screen2;
+import View.Game_Screen3;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,8 +28,14 @@ public class Screen_nextlevel implements Screen {
 
     @Override
     public void click() {
-        // Khi click: tạo màn mới theo giá trị hiện tại
-        Game_Manager.getInstance().getStackScreen().push(new Game_Screen2(chiso, time, them_tnt));
+        int currentLevel = Game_Manager.getCurrentLevel();
+        if (currentLevel == 1) {
+            Game_Manager.getInstance().getStackScreen().push(new Game_Screen2(chiso,time,them_tnt));
+            Game_Manager.setCurrentLevel(2);
+        } else if (currentLevel == 2) {
+            Game_Manager.getInstance().getStackScreen().push(new Game_Screen3(chiso,time,them_tnt));
+            Game_Manager.setCurrentLevel(3);
+        }
     }
 
     public void add_tnt() {

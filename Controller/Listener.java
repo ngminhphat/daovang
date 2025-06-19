@@ -6,6 +6,7 @@ package Controller;
 
 import View.Game_Screen;
 import View.Game_Screen2;
+import View.Game_Screen3;
 
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
@@ -110,6 +111,8 @@ public class Listener extends Frame {
                             gs.gapDo();
                         } else if (screen instanceof Game_Screen2 gs2) {
                             gs2.gapDo();
+                        } else if (screen instanceof Game_Screen3 gs3) {
+                            gs3.gapDo();
                         }
                         break;
 
@@ -118,6 +121,8 @@ public class Listener extends Frame {
                             gs.huyDovat();
                         } else if (screen instanceof Game_Screen2 gs2) {
                             gs2.huyDovat();
+                        } else if (screen instanceof Game_Screen3 gs3) {
+                            gs3.huyDovat();
                         }
                         break;
 

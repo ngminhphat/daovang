@@ -27,6 +27,7 @@ public class Moc {
     int countTnt = 0;
     int chiso_Diem = 1;
     public int tongDiem = 0;
+    int score_temp = 0;
     public BufferedImage image;
     public BufferedImage imageDay;
     int dang_gap = 0;
@@ -85,35 +86,23 @@ public class Moc {
             if (moc.intersects(vang) && !keoVe) {
                 try {
                     if (gold.weight == 1) {
-
                         this.image = ImageIO.read(new File("Resources/gapvang_1.png"));
-
-
                         speedY = -1;
                     } else if (gold.weight == 3) {
-
                         this.image = ImageIO.read(new File("Resources/gapvang_3.png"));
-
-
                         speedY = -2;
                     } else if (gold.weight == 4) {
-
                         this.image = ImageIO.read(new File("Resources/gapvang_4.png"));
-
+                        speedY = -3;
                     }
-
-
-                    speedY = -3;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 keoVe = true;
                 gold.biKeo = true;
-                tongDiem += chiso_Diem * gold.score;
+                score_temp = chiso_Diem * gold.score;
                 break;
-
             }
-
         }
     }
 
@@ -125,7 +114,7 @@ public class Moc {
             if (moc.intersects(bom) && !keoVe) {
                 keoVe = true;
                 tnt.biKeo = true;
-                speedY = -1;
+                speedY = -3;
                 countTnt++;
                 try {
                     image = ImageIO.read(new File("Resources/gaptnt.png"));
@@ -134,7 +123,6 @@ public class Moc {
                 }
             }
         }
-
     }
 
     public void setCountTnt(int k) {
@@ -161,7 +149,7 @@ public class Moc {
                 keoVe = true;
                 da.biKeo = true;
                 speedY = -1;
-                tongDiem += chiso_Diem * da.score;
+                score_temp = chiso_Diem * da.score;
             }
         }
     }
@@ -179,7 +167,7 @@ public class Moc {
                 if (dem % 2 == 0) {
                     countTnt++;
                 } else {
-                    tongDiem += 300;
+                    score_temp = 300;
                 }
 
             }
@@ -201,8 +189,8 @@ public class Moc {
                 }
                 keoVe = true;
                 pig.biKeo = true;
-                speedY = -1;
-                tongDiem += chiso_Diem * pig.score;
+                speedY = -3;
+                score_temp = chiso_Diem * pig.score;
             }
         }
     }
@@ -220,8 +208,8 @@ public class Moc {
                 }
                 keoVe = true;
                 kc.biKeo = true;
-                speedY = -2;
-                tongDiem += chiso_Diem * kc.score;
+                speedY = -3;
+                score_temp = chiso_Diem * kc.score;
             }
         }
     }
@@ -235,6 +223,9 @@ public class Moc {
         this.positionX = -((int) ((positionY - 134) * d)) + 350;
         //khi móc quay quanh trục 
         if (this.positionY <= 134) {
+            tongDiem+= score_temp;
+            score_temp = 0;
+            keoVe = false;
             speedY = 0;
             speedX = 0;
             this.positionX = 350;
@@ -249,8 +240,7 @@ public class Moc {
         //khi móc vượt quá màn hình sẽ cho quay trở lại
         if (this.positionY >= 600) {
             keoVe = true;
-            speedY = -3;
-            this.speedX = (int) (this.speedY * d);
+            speedY = -speedY;
         }
         //móc sẽ quay quanh trục 
         if (this.positionX == 350 && this.positionY == 134) {
@@ -260,6 +250,16 @@ public class Moc {
                 anphaPlus = 1;
             }
             anpha += anphaPlus;
+        }
+    }
+
+    public void huyVatThe() {
+        score_temp = 0;
+        speedY = -3;
+        try {
+            this.image = ImageIO.read(new File("Resources/moc.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -14,7 +14,7 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 public class Game_Screen3 implements Screen {
-	BufferedImage bg, bg2, bufferedImage2, level_3, target3;
+	BufferedImage bg, bg2, bufferedImage2;
 	int count2 = 0;
 	int tempScore;
 	int scoreX = 80;
@@ -69,8 +69,6 @@ public class Game_Screen3 implements Screen {
 			// Background
 			bg = ImageIO.read(new File("Resources/bg.png"));
 			bg2 = ImageIO.read(new File("Resources/bg2.png"));
-			try { level_3 = ImageIO.read(new File("Resources/level3.png")); } catch (Exception e) { level_3 = null; }
-			try { target3 = ImageIO.read(new File("Resources/target3.png")); } catch (Exception e) { target3 = null; }
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -120,18 +118,15 @@ public class Game_Screen3 implements Screen {
 	}
 
 	public void gapDo() {
-		player.moc.setSpeedY(3);
-		player.moc.keoVe = false;
+		if (player.moc.getSpeedY() == 0) {
+			player.moc.setSpeedY(3);
+			player.moc.keoVe = false;
+		}
 	}
 
 	public void huyDovat() {
 		if (player.moc.getCountTnt() != 0 && player.moc.keoVe) {
-			try {
-				Player.moc.image = ImageIO.read(new File("Resources/moc.png"));
-				Player.moc.setSpeedY(-3);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			player.moc.huyVatThe();
 			player.moc.setCountTnt(-1);
 		}
 	}
@@ -148,8 +143,6 @@ public class Game_Screen3 implements Screen {
 		// Vẽ nền
 		bufferG.drawImage(bg2, 0, 0, null);
 		bufferG.drawImage(bg, 0, 150, null);
-		if (target3 != null) bufferG.drawImage(target3, 50, 100, null);
-		if (level_3 != null) bufferG.drawImage(level_3, 650, 100, null);
 
 		// Vẽ nhân vật và móc
 		player.draw(bufferedImage2);

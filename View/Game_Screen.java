@@ -114,18 +114,15 @@ public class Game_Screen implements Screen {
     }
 
     public void gapDo() {
-        player.moc.setSpeedY(3);
-        player.moc.keoVe = false;
+        if (player.moc.getSpeedY() == 0) {
+            player.moc.setSpeedY(3);
+            player.moc.keoVe = false;
+        }
     }
 
     public void huyDovat() {
         if (player.moc.getCountTnt() != 0 && player.moc.keoVe) {
-            try {
-                Player.moc.image = ImageIO.read(new File("Resources/moc.png"));
-                Player.moc.setSpeedY(-3);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            player.moc.huyVatThe();
             player.moc.setCountTnt(-1);
         }
     }

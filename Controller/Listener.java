@@ -79,7 +79,7 @@ public class Listener extends Frame {
                         snl.increase_chiso();
                     } else if (snl.rectMuaTg.contains(mx, my)) {
                         snl.increase_time();
-                    } else if (mx >= 580 && mx <= 752 && my >= 218 && my <= 282) {
+                    } else if (snl.rectNextButton.contains(mx, my)) {
                         snl.click();
                     }
                 } else if (screen instanceof Screen_win) {
@@ -108,6 +108,19 @@ public class Listener extends Frame {
             public void mouseExited(MouseEvent e) {
             }
         });
+
+        // Thêm MouseMotionListener để cập nhật hover
+        x.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                Object screen = Game_Manager.getInstance().getStackScreen().peek();
+                if (screen instanceof Screen_nextlevel snl) {
+                    snl.updateHover(e.getX(), e.getY());
+                    x.repaint();
+                }
+            }
+        });
+
         x.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {

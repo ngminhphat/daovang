@@ -60,17 +60,32 @@ public class Listener extends Frame {
         x.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if ((e.getX() >= 50 && e.getX() <= 367) && (e.getY() >= 50 && e.getY() <= 337)) {
-                    ((Start_Screen) Game_Manager.getInstance().getStackScreen().peek()).startGame();
-                }
-                if (e.getX() >= 300 && e.getX() <= 600 && e.getY() >= 400 && e.getY() <= 500) {
-                    ((game_over) Game_Manager.getInstance().getStackScreen().peek()).resetGame();
-                }
-                if (e.getX() >= 580 && e.getX() <= 752 && e.getY() >= 218 && e.getY() <= 282) {
-                    ((Screen_nextlevel) (Game_Manager.getInstance().getStackScreen().peek())).click();
-                }
-                if (e.getX() >= 391 && e.getX() <= 671 && e.getY() >= 510 && e.getY() <= 550) {
-                    ((Screen_win) (Game_Manager.getInstance().getStackScreen().peek())).click();
+                Object screen = Game_Manager.getInstance().getStackScreen().peek();
+                int mx = e.getX();
+                int my = e.getY();
+
+                if (screen instanceof Start_Screen) {
+                    if ((mx >= 50 && mx <= 367) && (my >= 50 && my <= 337)) {
+                        ((Start_Screen) screen).startGame();
+                    }
+                } else if (screen instanceof game_over) {
+                    if (mx >= 300 && mx <= 600 && my >= 400 && my <= 500) {
+                        ((game_over) screen).resetGame();
+                    }
+                } else if (screen instanceof Screen_nextlevel snl) {
+                    if (snl.rectMuaTnt.contains(mx, my)) {
+                        snl.add_tnt();
+                    } else if (snl.rectMuaChiso.contains(mx, my)) {
+                        snl.increase_chiso();
+                    } else if (snl.rectMuaTg.contains(mx, my)) {
+                        snl.increase_time();
+                    } else if (mx >= 580 && mx <= 752 && my >= 218 && my <= 282) {
+                        snl.click();
+                    }
+                } else if (screen instanceof Screen_win) {
+                    if (mx >= 391 && mx <= 671 && my >= 510 && my <= 550) {
+                        ((Screen_win) screen).click();
+                    }
                 }
             }
 
@@ -91,7 +106,6 @@ public class Listener extends Frame {
 
             @Override
             public void mouseExited(MouseEvent e) {
-
             }
         });
         x.addKeyListener(new KeyListener() {
@@ -123,30 +137,6 @@ public class Listener extends Frame {
                             gs2.huyDovat();
                         } else if (screen instanceof Game_Screen3 gs3) {
                             gs3.huyDovat();
-                        }
-                        break;
-
-                    case KeyEvent.VK_1:
-                        if (screen instanceof Screen_nextlevel snl) {
-                            snl.add_tnt();
-                        }
-                        break;
-
-                    case KeyEvent.VK_2:
-                        if (screen instanceof Screen_nextlevel snl) {
-                            snl.increase_chiso();
-                        }
-                        break;
-
-                    case KeyEvent.VK_3:
-                        if (screen instanceof Screen_nextlevel snl) {
-                            snl.increase_time();
-                        }
-                        break;
-
-                    case KeyEvent.VK_SPACE:
-                        if (screen instanceof Screen_nextlevel snl) {
-                            snl.click();
                         }
                         break;
                 }

@@ -45,6 +45,6 @@ public class Start_Screen implements Screen {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backGround, 0, 0, null);
-        g.drawImage(startImage, 50, 50, null);
+        g.drawImage(startImage, 30, 30, null);
     }
 }

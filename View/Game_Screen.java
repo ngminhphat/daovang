@@ -72,6 +72,10 @@ public class Game_Screen implements Screen {
     }
 
     public void next_man() {
+        // LƯU TRẠNG THÁI HIỆN TẠI VÀO GAME_MANAGER
+        Game_Manager.playerScore = player.moc.tongDiem;
+        Game_Manager.playerTnt = player.moc.getCountTnt();
+        
         Game_Manager.getInstance().getStackScreen().push(new Screen_nextlevel());
     }
 

@@ -36,7 +36,11 @@ public class Game_Screen3 implements Screen {
 		player = new Player(300, 24);
 		dem = tg > 0 ? tg : 40;
 		Player.moc.setChiso_Diem(chiso);
-		Player.moc.setCountTnt(Player.moc.getCountTnt() + themtnt);
+		
+		// NẠP ĐẦY ĐỦ TRẠNG THÁI TỪ GAME_MANAGER
+		Player.moc.tongDiem = Game_Manager.playerScore;
+		Player.moc.setCountTnt(Game_Manager.playerTnt + themtnt);
+		
 		loadResources();
 	}
 
@@ -80,6 +84,10 @@ public class Game_Screen3 implements Screen {
 	}
 
 	public void next_man() {
+		// LƯU TRẠNG THÁI HIỆN TẠI VÀO GAME_MANAGER
+		Game_Manager.playerScore = player.moc.tongDiem;
+		Game_Manager.playerTnt = player.moc.getCountTnt();
+
 		Game_Manager.getInstance().getStackScreen().push(new Screen_win());
 	}
 

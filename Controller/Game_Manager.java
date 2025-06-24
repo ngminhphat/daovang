@@ -16,6 +16,9 @@ public class Game_Manager {
     private Stack<Screen> stackScreen;
     private static int currentLevel = 1;
 
+    public static int playerScore = 0; // Bắt đầu với 0 điểm
+    public static int playerTnt = 1;   // Bắt đầu với 1 TNT
+
     public static Game_Manager getInstance() {
         if (instance == null) {
             instance = new Game_Manager();

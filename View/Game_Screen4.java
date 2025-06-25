@@ -52,8 +52,7 @@ public class Game_Screen4 implements Screen {
             listGold.add(new Gold(250, 250, "Resources/vang_4.png", 500, 4));
             listGold.add(new Gold(550, 200, "Resources/vang_3.png", 300, 3));
             listGold.add(new Gold(120, 200, "Resources/vang_3.png", 250, 3));
-
-            listDa.add(new Da(200, 380, "Resources/da_2.png", 30, 2));
+            
             listDa.add(new Da(660, 250, "Resources/da_2.png", 25, 2));
             listDa.add(new Da(350, 320, "Resources/da_2.png", 40, 2));
             listDa.add(new Da(450, 250, "Resources/da_2.png", 35, 2));
@@ -61,7 +60,6 @@ public class Game_Screen4 implements Screen {
             listPig.add(new Pig(300, 520, "Resources/pig.png", 501, 6));
             listPig.add(new Pig(500, 480, "Resources/pig.png", 501, 7));
 
-            listTnt.add(new Tnt(380, 300));
             listTnt.add(new Tnt(550, 280));
 
             listKc.add(new kim_cuong(650, 450, "Resources/kc.png", 600));

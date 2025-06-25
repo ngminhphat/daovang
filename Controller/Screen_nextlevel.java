@@ -2,6 +2,7 @@ package Controller;
 
 import View.Game_Screen2;
 import View.Game_Screen3;
+import View.Game_Screen4;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -39,7 +40,7 @@ public class Screen_nextlevel implements Screen {
     private static final String DEFAULT_DESCRIPTION = "Chọn vật phẩm bạn muốn mua, sau đó nhấn \"Next Level\" để tiếp tục.";
     // Thêm giá vào mô tả
     private static final String TNT_DESCRIPTION = "Thuốc nổ ($" + PRICE_TNT + "): Phá hủy vật phẩm không mong muốn.";
-    private static final String CHISO_DESCRIPTION = "Cỏ may mắn ($" + PRICE_CHISO + "): Tăng may mắn trong túi quà.";
+    private static final String CHISO_DESCRIPTION = "Cỏ USA ($" + PRICE_CHISO + "): Tăng sức kéo màn tiếp theo.";
     private static final String TIME_DESCRIPTION = "Thêm thời gian ($" + PRICE_TIME + "): Tăng 30 giây cho màn sau.";
 
 
@@ -87,10 +88,20 @@ public class Screen_nextlevel implements Screen {
         if (currentLevel == 1) {
             Game_Manager.getInstance().getStackScreen().push(new Game_Screen2(chiso, time, them_tnt));
             Game_Manager.setCurrentLevel(2);
+
         } else if (currentLevel == 2) {
             Game_Manager.getInstance().getStackScreen().push(new Game_Screen3(chiso, time, them_tnt));
             Game_Manager.setCurrentLevel(3);
         }
+        else if (currentLevel == 3) {
+            Game_Manager.getInstance().getStackScreen().push(new Game_Screen4(chiso, time, them_tnt));
+            Game_Manager.setCurrentLevel(4);
+        }
+        else if (currentLevel == 4) {
+            Game_Manager.getInstance().getStackScreen().push(new Game_Screen4(chiso, time, them_tnt));
+            Game_Manager.setCurrentLevel(5);
+        }
+
     }
 
     public void add_tnt() {

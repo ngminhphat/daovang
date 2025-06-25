@@ -55,6 +55,9 @@ public class Moc {
         chiso_Diem = 2;
     }
 
+    public int getChiso_Diem() {
+        return chiso_Diem;
+    }
     public int getPositionX() {
         return positionX;
     }

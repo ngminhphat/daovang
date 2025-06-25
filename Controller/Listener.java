@@ -4,9 +4,7 @@
  */
 package Controller;
 
-import View.Game_Screen;
-import View.Game_Screen2;
-import View.Game_Screen3;
+import View.*;
 
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
@@ -140,8 +138,15 @@ public class Listener extends Frame {
                             gs2.gapDo();
                         } else if (screen instanceof Game_Screen3 gs3) {
                             gs3.gapDo();
-                        }
-                        break;
+                        } else if (screen instanceof Game_Screen4 gs4) {
+                    gs4.gapDo();
+                        } else if (screen instanceof Game_Screen5 gs5) {
+                            gs5.gapDo();
+                };
+
+
+
+                break;
 
                     case KeyEvent.VK_UP:
                         if (screen instanceof Game_Screen gs) {
@@ -150,6 +155,10 @@ public class Listener extends Frame {
                             gs2.huyDovat();
                         } else if (screen instanceof Game_Screen3 gs3) {
                             gs3.huyDovat();
+                        } else if (screen instanceof Game_Screen4 gs4) {
+                    gs4.huyDovat();
+                }else if (screen instanceof Game_Screen5 gs5) {
+                            gs5.huyDovat();
                         }
                         break;
                 }

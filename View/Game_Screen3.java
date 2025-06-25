@@ -84,11 +84,10 @@ public class Game_Screen3 implements Screen {
 	}
 
 	public void next_man() {
-		// LƯU TRẠNG THÁI HIỆN TẠI VÀO GAME_MANAGER
+		// LƯU TRẠNG THÁI VÀO GAME_MANAGER TRƯỚC KHI CHUYỂN MÀN
 		Game_Manager.playerScore = player.moc.tongDiem;
 		Game_Manager.playerTnt = player.moc.getCountTnt();
-
-		Game_Manager.getInstance().getStackScreen().push(new Screen_win());
+		Game_Manager.getInstance().getStackScreen().push(new Controller.Screen_nextlevel());
 	}
 
 	@Override

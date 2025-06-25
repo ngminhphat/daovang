@@ -2,7 +2,7 @@ package Controller;
 
 import View.Game_Screen2;
 import View.Game_Screen3;
-import View.Game_Screen4;
+import View.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -98,7 +98,7 @@ public class Screen_nextlevel implements Screen {
             Game_Manager.setCurrentLevel(4);
         }
         else if (currentLevel == 4) {
-            Game_Manager.getInstance().getStackScreen().push(new Game_Screen4(chiso, time, them_tnt));
+            Game_Manager.getInstance().getStackScreen().push(new Game_Screen5(chiso, time, them_tnt));
             Game_Manager.setCurrentLevel(5);
         }
 

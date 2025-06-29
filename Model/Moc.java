@@ -31,6 +31,7 @@ public class Moc {
     public BufferedImage image;
     public BufferedImage imageDay;
     int dang_gap = 0;
+    int countRope = 3; // Số lượng dây mặc định
     public ArrayList<Tnt> myListTnt = new ArrayList<>();
 
     public void setChiso_Diem(int chiso_Diem) {
@@ -134,6 +135,42 @@ public class Moc {
 
     public int getCountTnt() {
         return countTnt;
+    }
+
+    // Phương thức quản lý số lượng dây
+    public void setCountRope(int count) {
+        this.countRope = count;
+    }
+
+    public int getCountRope() {
+        return countRope;
+    }
+
+    // Phương thức để lấy tọa độ hiện tại của móc
+    public int getX() {
+        return positionX;
+    }
+
+    public int getY() {
+        return positionY;
+    }
+
+    // Thêm setter cho positionX và positionY
+    public void setPositionX(int x) {
+        this.positionX = x;
+    }
+
+    public void setPositionY(int y) {
+        this.positionY = y;
+    }
+
+    // Thêm getter và setter cho score_temp
+    public int getScoreTemp() {
+        return score_temp;
+    }
+
+    public void setScoreTemp(int score) {
+        this.score_temp = score;
     }
 
     public void anDa(ArrayList<Da> listDa) {

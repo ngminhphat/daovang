@@ -30,6 +30,7 @@ public class Game_Screen2 implements Screen {
 	public ArrayList<Tnt> listTnt = new ArrayList<>();
 	public ArrayList<kim_cuong> listKc = new ArrayList<>();
 	public ArrayList<thung> listThung = new ArrayList<>();
+	public ArrayList<HamRang> listHamRang = new ArrayList<>();
 	public ArrayList<Image> listDiem = new ArrayList<>();
 
 	public Game_Screen2(int chiso, int tg, int themtnt) {
@@ -61,6 +62,10 @@ public class Game_Screen2 implements Screen {
 			listTnt.add(new Tnt(350, 290));
 			listKc.add(new kim_cuong(650, 450, "Resources/kc.png", 500));
 			listThung.add(new thung(500, 350));
+
+			// Thêm hàm răng
+			listHamRang.add(new HamRang(150, 180, 1)); // Di chuyển sang phải
+			listHamRang.add(new HamRang(600, 280, -2)); // Di chuyển sang trái
 
 			// Ảnh số điểm
 			for (int i = 0; i < 10; i++) {
@@ -100,6 +105,14 @@ public class Game_Screen2 implements Screen {
 		Player.moc.update();
 		listPig.forEach(Pig::update);
 
+		// Cập nhật hàm răng
+		for (HamRang hamRang : listHamRang) {
+			hamRang.update();
+		}
+
+		// Kiểm tra va chạm với hàm răng
+		checkHamRangCollision();
+
 		// Cập nhật thời gian
 		if (count2 == 59) {
 			dem--;
@@ -122,6 +135,43 @@ public class Game_Screen2 implements Screen {
 			listPig.removeIf(p -> p.biKeo);
 			listKc.removeIf(k -> k.biKeo);
 			listThung.removeIf(t -> t.biKeo);
+		}
+	}
+
+	// Kiểm tra va chạm với hàm răng
+	private void checkHamRangCollision() {
+		if (Player.moc.getSpeedY() != 0) { // Chỉ kiểm tra khi móc đang di chuyển
+			int ropeX = Player.moc.getX();
+			int ropeY = Player.moc.getY();
+			
+			for (HamRang hamRang : listHamRang) {
+				if (hamRang.checkCollisionWithRope(ropeX, ropeY)) {
+					// Cắt dây móc - quay về điểm xuất phát ngay lập tức
+					Player.moc.setSpeedY(0);
+					Player.moc.keoVe = false;
+					Player.moc.setPositionX(350);
+					Player.moc.setPositionY(134);
+					
+					// Reset điểm tạm thời để không cộng điểm khi bị đứt dây
+					Player.moc.setScoreTemp(0);
+					
+					// Giảm số dây
+					Player.moc.setCountRope(Player.moc.getCountRope() - 1);
+					
+					// Kiểm tra nếu hết dây
+					if (Player.moc.getCountRope() <= 0) {
+						// Nếu đủ điểm thì qua màn ngay lập tức
+						if (player.moc.tongDiem >= targetScore) {
+							next_man();
+						} else {
+							// Nếu chưa đủ điểm thì game over
+							click();
+						}
+					}
+					
+					break; // Chỉ cắt một lần
+				}
+			}
 		}
 	}
 
@@ -180,6 +230,10 @@ public class Game_Screen2 implements Screen {
 		int demTnt = player.moc.getCountTnt();
 		bufferG.drawImage(listDiem.get(Math.max(0, Math.min(demTnt, 9))), 608, 100, null);
 
+		// Hiển thị số dây còn lại
+		int demRope = player.moc.getCountRope();
+		bufferG.drawImage(listDiem.get(Math.max(0, Math.min(demRope, 9))), 650, 100, null);
+
 		// Hiển thị thời gian
 		timeDonVi = dem % 10;
 		timeChuc = dem / 10;
@@ -193,6 +247,7 @@ public class Game_Screen2 implements Screen {
 		listTnt.forEach(item -> item.draw(bufferedImage2));
 		listKc.forEach(item -> item.draw(bufferedImage2));
 		listThung.forEach(item -> item.draw(bufferedImage2));
+		listHamRang.forEach(item -> item.draw(bufferedImage2));
 
 		g2d.drawImage(bufferedImage2, 0, 0, null);
 	}
